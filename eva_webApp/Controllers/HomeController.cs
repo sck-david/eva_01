@@ -52,7 +52,7 @@ namespace eva_webApp.Controllers
         [HttpGet("getStatistics/{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserDTO))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> getStatistics(int userId)
+        public async Task<IActionResult> GetStatistics(int userId)
         {
             var stats = _context.Statistics.Where(x => x.UserId == userId).ToList();
             if (stats is null)
@@ -68,7 +68,7 @@ namespace eva_webApp.Controllers
         [HttpGet("getGoals/{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserDTO))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> getGoals(int userId)
+        public async Task<IActionResult> GetGoals(int userId)
         {
             var goal = _context.Goals.Where(x=> x.UserId==userId).ToList();
             if (goal is null)
@@ -83,7 +83,7 @@ namespace eva_webApp.Controllers
         [HttpGet("getBodyMeasurements/{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserDTO))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> getBodyMeasurements(int userId)
+        public async Task<IActionResult> GetBodyMeasurements(int userId)
         {
             var bm = _context.BodyMeasurements.FirstOrDefault(x => x.UserId == userId);
             if (bm is null)
@@ -94,6 +94,49 @@ namespace eva_webApp.Controllers
             return Ok(bmDTO);
         }
 
+        [HttpPost("addUser")]
+        public async Task<ActionResult<User>> AddUser(User user)
+        {
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
 
+            return CreatedAtAction(nameof(GetUser), new { email = user.Email }, user.Id);
+        }
+
+        [HttpPost("addGoal")]
+        public async Task<ActionResult<Goal>> AddGoal(Goal goal)
+        {
+            _context.Goals.Add(goal);
+            await _context.SaveChangesAsync();
+        
+            return CreatedAtAction(nameof(GetGoals), new { userId = goal.UserId }, goal.Id);
+        }
+
+        [HttpPost("addBodyMeasurements")]
+        public async Task<ActionResult<BodyMeasurement>> AddBodyMeasurements(BodyMeasurement bm)
+        {
+            _context.BodyMeasurements.Add(bm);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetBodyMeasurements), new { userId = bm.UserId }, bm.Id);
+        }
+
+        [HttpPost("addStatistic")]
+        public async Task<ActionResult<Statistic>> AddStatistic(Statistic st)
+        {
+            _context.Statistics.Add(st);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetStatistics), new { userId = st.UserId }, st.Id);
+        }
+
+        [HttpPost("addWorkout")]
+        public async Task<ActionResult<Statistic>> AddWorkout(Workout w)
+        {
+            _context.Workouts.Add(w);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetWorkouts), w.Id);
+        }
     }
 }
