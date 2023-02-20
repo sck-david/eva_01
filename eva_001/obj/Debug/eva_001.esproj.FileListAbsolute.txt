@@ -1,2 +1,4 @@
 C:\Users\David Schlick\.Schule\EVA_Projekt\eva_001\obj\Debug\eva_001.esproj.SuggestedBindingRedirects.cache
 C:\Users\David Schlick\.Schule\EVA_Projekt\eva_001\obj\Debug\eva_001.esproj.CoreCompileInputs.cache
+C:\Users\homeoffice\source\repos\eva_01\eva_001\obj\Debug\eva_001.esproj.SuggestedBindingRedirects.cache
+C:\Users\homeoffice\source\repos\eva_01\eva_001\obj\Debug\eva_001.esproj.CoreCompileInputs.cache

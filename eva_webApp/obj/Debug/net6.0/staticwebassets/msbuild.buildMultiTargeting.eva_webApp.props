@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\eva_webApp.props" />
+</Project>

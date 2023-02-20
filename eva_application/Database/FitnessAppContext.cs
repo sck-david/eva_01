@@ -38,12 +38,20 @@ namespace eva_webApp.Database
                 .RuleFor(u => u.Password, f => f.Lorem.Word())
                 .RuleFor(u => u.Email, f => f.Internet.Email());
 
+            var userData = userFaker.Generate(20);
+            await context.Users.AddRangeAsync(userData);
+            context.SaveChanges();
+
             var workoutFaker = new Faker<Workout>()
                 .RuleFor(w => w.Name, f => f.Commerce.ProductName())
                 .RuleFor(w => w.Duration, f => f.Random.Int(1, 60))
                 .RuleFor(w => w.Date, f => f.Date.Between(DateTime.Now.AddDays(-30), DateTime.Now))
                 .RuleFor(w => w.UserId, f => f.Random.Int(1, context.Users.Count()))
                 .RuleFor(w => w.Description, f => f.Lorem.Sentence());
+
+            var workoutData = workoutFaker.Generate(50);
+            context.Workouts.AddRange(workoutData);
+            context.SaveChanges();
 
             var statisticFaker = new Faker<Statistic>()
                 .RuleFor(s => s.Reps, f => f.Random.Int(5, 20))
@@ -66,11 +74,8 @@ namespace eva_webApp.Database
                 .RuleFor(b => b.UserId, f => f.Random.Int(1, context.Users.Count()))
                 .RuleFor(b => b.Date, f => f.Date.Between(DateTime.Now.AddDays(-60),DateTime.Now));
 
-            var userData = userFaker.Generate(20);
-            context.Users.AddRange(userData);
 
-            var workoutData = workoutFaker.Generate(100);
-            context.Workouts.AddRange(workoutData);
+            
 
             var statisticData = statisticFaker.Generate(300);
             context.Statistics.AddRange(statisticData);
