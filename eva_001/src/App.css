@@ -1,5 +1,32 @@
 .App {
-  text-align: center;
+    /*text-align: center;*/
+}
+
+body {
+    color: white;
+    background-color: black;
+    margin-left: 5%;
+    margin-top: 5%;
+    margin-right: 5%;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.flex-container > div {
+    background-color: #f1f1f1;
+    color:black;
+    width: 292px;
+    margin: 0.5px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+}
+
+footer{
+    text-align: center;
 }
 
 .App-logo {
