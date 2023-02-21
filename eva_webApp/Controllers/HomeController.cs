@@ -138,5 +138,48 @@ namespace eva_webApp.Controllers
 
             return CreatedAtAction(nameof(GetWorkouts), w.Id);
         }
+
+
+
+        //deletes 
+
+        [HttpDelete("DeleteUserById/{userId}"), ActionName("Delete")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteUser(int userId)
+        {
+            if (_context.Users == null)
+            {
+                return Problem("Entity set 'FitnessAppContext.Users'  is null.");
+            }
+
+            var user = await _context.Users.FindAsync(userId);
+            if(user == null)
+            {
+                NotFound();
+            }
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            return Ok("deleted: "+ user.Username);
+        }
+
+        [HttpDelete("DeleteUserByEmail"), ActionName("Delete")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteUser(string email)
+        {
+            if (_context.Users == null)
+            {
+                return Problem("Entity set 'FitnessAppContext.Users'  is null.");
+            }
+
+            var user = _context.Users.FirstOrDefault(x => x.Email.Equals(email));
+            if (user == null)
+            {
+                NotFound();
+            }
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            return Ok("deleted: " + user.Username);
+        }
+
     }
 }
