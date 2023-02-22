@@ -162,7 +162,7 @@ namespace eva_webApp.Controllers
             return Ok("deleted: "+ user.Username);
         }
 
-        [HttpDelete("DeleteUserByEmail"), ActionName("Delete")]
+        [HttpDelete("DeleteUserByEmail/{email}"), ActionName("Delete")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteUser(string email)
         {
@@ -179,6 +179,63 @@ namespace eva_webApp.Controllers
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
             return Ok("deleted: " + user.Username);
+        }
+
+        [HttpDelete("DeleteGoal/{id}"), ActionName("Delete")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteGoal(int id)
+        {
+            if (_context.Goals == null)
+            {
+                return Problem("Entity set 'FitnessAppContext.Goals'  is null.");
+            }
+
+            var goal = await _context.Goals.FindAsync(id);
+            if (goal == null)
+            {
+                NotFound();
+            }
+            _context.Goals.Remove(goal);
+            await _context.SaveChangesAsync();
+            return Ok("deleted: " + id);
+        }
+
+        [HttpDelete("DeleteStatistic/{id}"), ActionName("Delete")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteStatistic(int id)
+        {
+            if (_context.Statistics == null)
+            {
+                return Problem("Entity set 'FitnessAppContext.Statistics'  is null.");
+            }
+
+            var statistic = await _context.Statistics.FindAsync(id);
+            if (statistic == null)
+            {
+                NotFound();
+            }
+            _context.Statistics.Remove(statistic);
+            await _context.SaveChangesAsync();
+            return Ok("deleted: " + id);
+        }
+
+        [HttpDelete("DeleteWorkout/{id}"), ActionName("Delete")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteWorkout(int id)
+        {
+            if (_context.Workouts == null)
+            {
+                return Problem("Entity set 'FitnessAppContext.Workouts'  is null.");
+            }
+
+            var w = await _context.Workouts.FindAsync(id);
+            if (w == null)
+            {
+                NotFound();
+            }
+            _context.Workouts.Remove(w);
+            await _context.SaveChangesAsync();
+            return Ok("deleted: " + id);
         }
 
     }
