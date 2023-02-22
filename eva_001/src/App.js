@@ -21,13 +21,13 @@ export default class App extends Component {
                     <header>EVA</header>
                     <div id="container">
                         <div id="content-container">
-                            <p>Hier steht viel Content spaeter und es wird den meisten Platz wegnehmen</p>
+                            <div>Hier steht viel Content spaeter und es wird den meisten Platz wegnehmen</div>
                         </div>
                         <footer class="flex-container">
-                            <div>Home</div>
-                            <div>Leaderboard</div>
-                            <div>Goals</div>
-                            <div>Profile</div>
+                            <div id="home-btn">Home</div>
+                            <div id="leaderboard-btn">Leaderboard</div>
+                            <div id="goals-btn">Goals</div>
+                            <div id="profile-btn">Profile</div>
                         </footer>
                     </div>
                 </div>
