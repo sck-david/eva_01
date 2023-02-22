@@ -3,6 +3,7 @@ using eva_webApp.Database;
 using eva_webApp.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SQLitePCL;
 using System.Reflection.Metadata;
 
 namespace eva_webApp.Controllers
@@ -60,6 +61,7 @@ namespace eva_webApp.Controllers
                 return NotFound();
             }
             List<StatisticDTO> statsDTO = new List<StatisticDTO>();
+            
             stats.ForEach(x => statsDTO.Add(new StatisticDTO(x.WorkoutId, _context.Workouts.FirstOrDefault(y => y.Id == x.WorkoutId).Name, x.Reps, x.Sets, x.Weight)));
             
             return Ok(statsDTO);
@@ -238,5 +240,135 @@ namespace eva_webApp.Controllers
             return Ok("deleted: " + id);
         }
 
+
+        //Puts
+        [HttpPut("UpdateUser")]
+        public async Task<IActionResult> UpdateUser(User user)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            var existingUser =  _context.Users.Where(u => u.Id == user.Id).FirstOrDefault<User>();
+
+                if (existingUser != null)
+                {
+                    existingUser.Email = user.Email;
+                    existingUser.Username = user.Username;
+                    existingUser.Password = user.Password;
+
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            
+
+            return Ok("Updated User with ID: "+user.Id);
+        }
+
+        [HttpPut("UpdateBodyMeasurement")]
+        public async Task<IActionResult> UpdateBodyMeasurement(BodyMeasurement bm)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            var exBm = _context.BodyMeasurements.Where(x => x.Id == bm.Id).FirstOrDefault<BodyMeasurement>();
+
+            if (exBm != null)
+            {
+                exBm.BodyFatPercentage = bm.BodyFatPercentage;
+                exBm.Weight = bm.Weight;
+                exBm.Date = DateTime.Now;
+                exBm.Height = bm.Height;
+
+                _context.SaveChanges();
+            }
+            else
+            {
+                return NotFound();
+            }
+
+
+            return Ok("Updated BodyMeasurements with ID: " + bm.Id);
+        }
+
+        [HttpPut("UpdateGoals")]
+        public async Task<IActionResult> UpdateGoals(Goal g)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            var exG = _context.Goals.Where(x => x.Id == g.Id).FirstOrDefault<Goal>();
+
+            if (exG != null &&_context.Users.Find(g.UserId) != null)
+            {
+                exG.TargetDate = g.TargetDate;
+                exG.Name = g.Name;
+                exG.Description = g.Description;
+                exG.Status = g.Status;
+
+                _context.SaveChanges();
+            }
+            else
+            {
+                return NotFound();
+            }
+
+
+            return Ok("Updated Goal with ID: " + g.Id + " From User: "+ _context.Users.Find(g.UserId).Username);
+        }
+
+
+        [HttpPut("UpdateStat")]
+        public async Task<IActionResult> UpdateStat(Statistic s)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            var exS = _context.Statistics.Where(x => x.Id == s.Id).FirstOrDefault<Statistic>();
+
+            if (exS != null && _context.Users.Find(s.UserId) != null && _context.Workouts.Find(s.WorkoutId) != null)
+            {
+                exS.Sets = s.Sets;
+                exS.Reps = s.Reps;
+                exS.Weight = s.Weight;
+
+                _context.SaveChanges();
+            }
+            else
+            {
+                return NotFound();
+            }
+
+
+            return Ok("Updated Statistic with ID: " + s.Id + " From User: " + _context.Users.Find(s.UserId).Username);
+        }
+
+        [HttpPut("UpdateWorkout")]
+        public async Task<IActionResult> UpdateWorkout(Workout w)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            var exW = _context.Workouts.Where(x => x.Id == w.Id).FirstOrDefault<Workout>();
+
+            if (exW != null && _context.Users.Find(w.UserId) != null)
+            {
+                exW.Duration = w.Duration;
+                exW.Date = w.Date;
+                exW.Description = w.Description;
+                exW.Name = w.Name;
+                
+                _context.SaveChanges();
+            }
+            else
+            {
+                return NotFound();
+            }
+
+
+            return Ok("Updated Workout with ID: " + w.Id + " From User: " + _context.Users.Find(w.UserId).Username);
+        }
     }
 }
