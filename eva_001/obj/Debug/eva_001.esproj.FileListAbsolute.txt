@@ -2,3 +2,7 @@ C:\Users\David Schlick\.Schule\EVA_Projekt\eva_001\obj\Debug\eva_001.esproj.Sugg
 C:\Users\David Schlick\.Schule\EVA_Projekt\eva_001\obj\Debug\eva_001.esproj.CoreCompileInputs.cache
 D:\Documents\Schule\4CHIF\PRE\Code\eva_01\eva_001\obj\Debug\eva_001.esproj.SuggestedBindingRedirects.cache
 D:\Documents\Schule\4CHIF\PRE\Code\eva_01\eva_001\obj\Debug\eva_001.esproj.CoreCompileInputs.cache
+D:\Documents\Schule\4CHIF\PRE\!Code\eva_01\eva_001\obj\Debug\eva_001.esproj.SuggestedBindingRedirects.cache
+D:\Documents\Schule\4CHIF\PRE\!Code\eva_01\eva_001\obj\Debug\eva_001.esproj.CoreCompileInputs.cache
+D:\Documents\Schule\4CHIF\PRE\Code-2\eva_01\eva_001\obj\Debug\eva_001.esproj.SuggestedBindingRedirects.cache
+D:\Documents\Schule\4CHIF\PRE\Code-2\eva_01\eva_001\obj\Debug\eva_001.esproj.CoreCompileInputs.cache
