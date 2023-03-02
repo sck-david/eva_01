@@ -21,16 +21,16 @@ export default class App extends Component {
                     <header>EVA</header>
                     <div id="container">
                         <div id="content-container">
-                            <div id="Home-Page" hidden="false">
+                            <div id="Home-Page">
                                 Hier wird die Homepage enstehen
                             </div>
-                            <div id="Leaderboard-Page" hidden="true">
+                            <div id="Leaderboard-Page" hidden>
                                 Hier ensteht das Leaderboard
                             </div>
-                            <div id="Goals-Page" hidden="true">
+                            <div id="Goals-Page" hidden>
                                 Hier ensteht die Goals-Page
                             </div>
-                            <div id="Profile-Pafe" hidden="true">
+                            <div id="Profile-Pafe" hidden>
                                 Hier wird das Profil stehen
                             </div>
                             <button class="cssbuttons-io-button" onClick="">
