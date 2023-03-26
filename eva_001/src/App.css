@@ -33,9 +33,12 @@ body {
 }
 
 .footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
     display: flex;
     justify-content: space-around;
-    padding: 16px;
+    padding: 0px, 10px, 0px, 10px;
     fill: white;
 }
 
