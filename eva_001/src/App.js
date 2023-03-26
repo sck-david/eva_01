@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Leaderboard from './Leaderboard';
 import Profile from './Profile';
+import Workouts from './Workouts';
 
 export default class App extends Component {
     state = {
@@ -22,6 +23,7 @@ export default class App extends Component {
                     {activePage === 'home' && <div className="title">Willkommen</div>}
                     {activePage === 'leaderboard' && <Leaderboard />}
                     {activePage === 'profile' && <Profile />}
+                    {activePage == 'workout' && <Workouts />}
                 </div>
                 <div className="footer">
                     <div className="footer-text" onClick={() => this.setActivePage('home')}>
@@ -32,6 +34,9 @@ export default class App extends Component {
                     </div>
                     <div className="footer-text" onClick={() => this.setActivePage('profile')}>
                         Profile
+                    </div>
+                    <div className="footer-text" onClick={() => this.setActivePage('workout')}>
+                        Workouts
                     </div>
                 </div>
             </div>
