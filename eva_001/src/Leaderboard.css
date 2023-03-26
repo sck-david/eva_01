@@ -1,0 +1,12 @@
+.leaderboard-container {
+    color: #FFFFFF;
+}
+
+.leaderboard-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+    .leaderboard-list li {
+        margin-bottom: 8px;
+    }
