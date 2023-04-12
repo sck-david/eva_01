@@ -5,6 +5,18 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("https://localhost:3000",
+                                              "https://localhost:3001");
+                      });
+});
+
 // Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -31,8 +43,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    //app.UseSwagger();
+    //app.UseSwaggerUI();
 
     using (var scope = app.Services.CreateScope())
     {
@@ -43,12 +55,14 @@ if (app.Environment.IsDevelopment())
                 throw new Exception("No DB!");
             }
             // New DB!!!
-            db.Database.EnsureDeleted();
-            db.Database.EnsureCreated();
-            await db.SeedBogusAsync(db);
+            //db.Database.EnsureDeleted();
+            //db.Database.EnsureCreated();
+            //await db.SeedBogusAsync(db);
         }
     }
 }
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseHttpsRedirection();
 
