@@ -1,0 +1,17 @@
+.home-container{
+    color: white;
+    text-align: center;
+}
+
+h3 {
+    
+}
+
+.home-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+    .home-list li {
+        margin-bottom: 8px;
+    }
