@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import './Goals.css';
-
-
-/*const Goals = () => {
-
-    return (
-
-        <div className="goals-container">
-            <h1>Goals</h1>
-        </div>
-    );
-};*/
 
 const Goals = () => {
     const [data, setData] = useState(null);
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [endDate, setEndDate] = useState('');
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        console.log(`Name: ${name}, Description: ${description}, End Date: ${endDate}`);
+        // TODO: Add logic to save the new goal
+    };
 
     useEffect(() => {
         fetchData();
@@ -30,27 +29,38 @@ const Goals = () => {
     };
 
     return (
-        // Render your component with the received data
-        // For example, you can map through an array of data and render each item
-        // or display specific data fields in your UI
-        <div id="workout-container" class="container mt-3 text-white">
+        <div className="goals-container">
+            <h1>Goals</h1>
+            <div className="goal-form">
+                <h3>Create a Goal</h3>
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        Name:
+                        <input type="text" value={name} onChange={e => setName(e.target.value)} />
+                    </label>
+                    <label>
+                        Description:
+                        <textarea value={description} onChange={e => setDescription(e.target.value)} />
+                    </label>
+                    <label>
+                        End Date:
+                        <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
+                    </label>
+                    <input type="submit" value="Create Goal" />
+                </form>
+            </div>
             <table>
-
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
                     <th>End-Date</th>
-
                 </tr>
-
                 {data &&
                     data.map(item => (
-                        <tr
-                            key={item.id}>
+                        <tr key={item.id}>
                             <td>{item.name}</td>
                             <td>{item.description}</td>
                             <td>{item.endDate}</td>
-
                         </tr>
                     ))}
             </table>

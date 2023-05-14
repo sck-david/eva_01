@@ -47,7 +47,7 @@ const Profile = () => {
             <div className="avatar-container">
                 <img className="avatar" src={userData.profilePicture} alt="Profilbild" />
                 <label className="file-upload-label">
-                    Profilbild ändern
+                    change picture
                     <input type="file" onChange={handleProfilePictureChange} style={{ display: 'none' }} />
                 </label>
                 <div className="user-name">{userData.name}</div>
@@ -55,13 +55,13 @@ const Profile = () => {
             <div className="user-details">
                 <p>E-Mail: {userData.email}</p>
                 <p>
-                    Alter: <input type="number" name="age" value={userData.age} onChange={handleChange} />
+                    Age: <input type="number" name="age" value={userData.age} onChange={handleChange} />
                 </p>
                 <p>
-                    Groesse: <input type="number" name="height" value={userData.height} onChange={handleChange} /> cm
+                    Height: <input type="number" name="height" value={userData.height} onChange={handleChange} /> cm
                 </p>
                 <p>
-                    Gewicht: <input type="number" name="weight" value={userData.weight} onChange={handleChange} /> kg
+                    Weight: <input type="number" name="weight" value={userData.weight} onChange={handleChange} /> kg
                 </p>
             </div>
             <p>BMI: {bmi}</p>

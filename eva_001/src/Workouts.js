@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import './Workouts.css';
-//import * as ReactDOM from 'react-dom';
-
 
 const WorkoutsComp = () => {
     const [data, setData] = useState(null);
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [duration, setDuration] = useState('');
+    const [date, setDate] = useState('');
 
     useEffect(() => {
         fetchData();
@@ -20,36 +22,36 @@ const WorkoutsComp = () => {
         }
     };
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        console.log(`Name: ${name}, Description: ${description}, Duration: ${duration}, Date: ${date}`);
+        // TODO: Add logic to save the new workout
+    };
+
     return (
-        
-        <div id="workout-container" class="container mt-3 text-white">
-        <table>
-            
-            <tr>
-                <th>Id</th>
-                <th>UserID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Duration</th>
-                <th>Date</th>
-                
-            </tr>
-            
-            {data &&
-                data.map(item => (
-                    <tr 
-                    key={item.id}>
-                        <td>{item.id}</td>
-                        <td>{item.userId}</td>
-                        <td>{item.name}</td>
-                        <td>{item.description}</td>
-                        <td>{item.duration}</td>
-                        <td>{item.date}</td>
-                       
-                    </tr>
-                ))}
+
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>UserID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Duration</th>
+                    <th>Date</th>
+                </tr>
+                {data &&
+                    data.map(item => (
+                        <tr key={item.id}>
+                            <td>{item.id}</td>
+                            <td>{item.userId}</td>
+                            <td>{item.name}</td>
+                            <td>{item.description}</td>
+                            <td>{item.duration}</td>
+                            <td>{item.date}</td>
+                        </tr>
+                    ))}
             </table>
-        </div>
     );
 };
 
