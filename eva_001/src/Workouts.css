@@ -1,7 +1,9 @@
 .workout-container {
-    color: #FFFFFF;
+    /*color: #FFFFFF;*/
+    color: white;
     display: inline-block;
 }
+
 
 .workout-table {
     width : 100%;

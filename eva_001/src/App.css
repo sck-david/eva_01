@@ -24,6 +24,7 @@ body {
     flex: 1;
     justify-content: center;
     align-items: center;
+    color:white;
 }
 
 .title {
@@ -39,6 +40,7 @@ body {
     display: flex;
     justify-content: space-around;
     padding: 0px, 10px, 0px, 10px;
+    background-color: #3A3A3A;
     fill: white;
 }
 

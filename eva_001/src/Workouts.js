@@ -21,12 +21,11 @@ const WorkoutsComp = () => {
     };
 
     return (
-        // Render your component with the received data
-        // For example, you can map through an array of data and render each item
-        // or display specific data fields in your UI
+        
+        <div id="workout-container" class="container mt-3 text-white">
         <table>
             
-            <tr >
+            <tr>
                 <th>Id</th>
                 <th>UserID</th>
                 <th>Name</th>
@@ -38,7 +37,8 @@ const WorkoutsComp = () => {
             
             {data &&
                 data.map(item => (
-                    <tr key={item.id}>
+                    <tr 
+                    key={item.id}>
                         <td>{item.id}</td>
                         <td>{item.userId}</td>
                         <td>{item.name}</td>
@@ -48,7 +48,8 @@ const WorkoutsComp = () => {
                        
                     </tr>
                 ))}
-        </table>
+            </table>
+        </div>
     );
 };
 
