@@ -1,12 +1,119 @@
+/* Set styles for the leaderboard container */
 .leaderboard-container {
-    color: #FFFFFF;
+    width: 85%;
+    height: calc(100% - 150px); /* Leave room for the heading and footer */
+    overflow-y: auto;
+    margin: 0 auto;
+    text-align: center;
 }
 
-.leaderboard-list {
-    list-style-type: none;
-    padding: 0;
+/* Set styles for the leaderboard heading */
+.leaderboard-heading {
+    background-color: #f4f4f4;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
-    .leaderboard-list li {
-        margin-bottom: 8px;
+.leaderboard-item {
+    width: 45%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+/* Set styles for the button container */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Set styles for the button group */
+.button-group {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* Set styles for the button group label */
+.button-group-label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Set styles for the buttons */
+.button {
+    padding: 8px 16px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .button:hover {
+        background-color: #e0e0e0;
     }
+
+/* Set styles for the selected button */
+.selected {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Set styles for the leaderboard list */
+.leaderboard-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 30px;
+    color: black;
+}
+
+/* Set styles for each leaderboard item */
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+/* Set styles for the leaderboard name */
+.leaderboard-name {
+    font-size: 18px;
+    font-weight: bold;
+    flex: 1; /* use flexbox to center the name and score */
+}
+
+/* Set styles for the leaderboard score */
+.leaderboard-score {
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+    margin-left: 10px; /* add a margin to separate the name and score */
+}
+
+/* Set styles for the leaderboard scrolling container */
+.leaderboard-scroll {
+    max-height: auto; /* leave space for navigation bar */
+    overflow-y: auto;
+}
+
+/* Set styles for the leaderboard scrollbar */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Set styles for gap between leaderboard items */
+.leaderboard-list li:not(:last-child) {
+    margin-bottom: 20px;
+}
