@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Leaderboard.css';
 
 const Leaderboard = () => {
     const [selectedMuscle, setSelectedMuscle] = useState(null);
     const [selectedExercise, setSelectedExercise] = useState(null);
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     const exercises = [
         { id: 1, name: 'Bench Press', muscle: 'Chest' },
@@ -28,6 +33,16 @@ const Leaderboard = () => {
     const filteredExercises = exercises.filter(
         (exercise) => (!selectedMuscle || exercise.muscle === selectedMuscle)
     );
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch('https://localhost:7086/api/Home/getAllStats'); // Replace with your API endpoint
+            const json = await response.json();
+            setData(json);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
     return (
         <div className="leaderboard-container">
@@ -62,18 +77,19 @@ const Leaderboard = () => {
                 <div className="leaderboard-scroll">
                     <ul className="leaderboard-list">
                         {/* Replace the dummy data with actual user scores */}
-                        <li className="leaderboard-item">
-                            <span className="leaderboard-name">User 1</span>
-                            <span className="leaderboard-score">100</span>
-                        </li>
-                        <li className="leaderboard-item">
-                            <span className="leaderboard-name">User 2</span>
-                            <span className="leaderboard-score">90</span>
-                        </li>
-                        <li className="leaderboard-item">
-                            <span className="leaderboard-name">User 3</span>
-                            <span className="leaderboard-score">80</span>
-                        </li>
+                        {/*<li className="leaderboard-item">*/}
+                        {/*    <span className="leaderboard-name">User 1</span>*/}
+                        {/*    <span className="leaderboard-score">100</span>*/}
+                        {/*</li>*/}
+                        
+                        {data &&
+                            data.map(item => (
+                                <li className="list-items">
+                                    <span className="leaderboard-name">{item.username}</span>
+                                    <span className="leaderboard-workout" >{item.workoutname}</span>
+                                    <span className="leaderboard-score">{item.score}</span>
+                                </li>
+                            ))}
 
                         {/* Add more leaderboard items here */}
                     </ul>

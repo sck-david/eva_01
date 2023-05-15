@@ -91,6 +91,8 @@
 .leaderboard-name {
     font-size: 18px;
     font-weight: bold;
+
+    color:white;
     flex: 1; /* use flexbox to center the name and score */
 }
 
@@ -99,7 +101,14 @@
     font-size: 16px;
     font-weight: bold;
     color: #666;
+    color: white;
     margin-left: 10px; /* add a margin to separate the name and score */
+}
+
+.leaderboard-workout{
+    color: white;
+    margin-left: 20px;
+    margin-right: 20px
 }
 
 /* Set styles for the leaderboard scrolling container */
@@ -116,4 +125,8 @@
 /* Set styles for gap between leaderboard items */
 .leaderboard-list li:not(:last-child) {
     margin-bottom: 20px;
+}
+
+.list-items{
+
 }

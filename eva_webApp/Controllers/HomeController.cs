@@ -35,6 +35,18 @@ namespace eva_webApp.Controllers
             return _context.Workouts;
         }
 
+        [Route("getAllStats")]
+        [HttpGet]
+        public IEnumerable<StatDTO> GetStats()
+        {
+            var stats = _context.Statistics;
+            List<StatDTO> StatsDTO = new List<StatDTO>();
+            stats.ForEachAsync(x=> StatsDTO.Add(new StatDTO(_context.Users.FirstOrDefault(y => y.Id == x.UserId).Username, _context.Workouts.FirstOrDefault(y => y.Id == x.WorkoutId).Name, (x.Sets*x.Weight*x.Reps))));
+            return StatsDTO;
+        }
+
+        public record StatDTO( string username, string workoutname, int score );
+
         [HttpGet("getUser/{email}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserDTO))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
